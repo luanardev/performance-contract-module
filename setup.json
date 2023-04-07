@@ -1,0 +1,8 @@
+{
+    "name": "Performance Contract",
+    "url": "performance_contract",
+    "group": "client",
+	"icon": "fa fa-edit",
+    "color": "#17a2b8",
+    "background": "rgba(22, 160, 133, 0.1)"
+}

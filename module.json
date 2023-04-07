@@ -1,0 +1,11 @@
+{
+    "name": "PerformanceContract",
+    "alias": "performancecontract",
+    "description": "",
+    "keywords": [],
+    "priority": 6,
+    "providers": [
+        "Lumis\\PerformanceContract\\Providers\\PerformanceContractServiceProvider"
+    ],
+    "files": []
+}

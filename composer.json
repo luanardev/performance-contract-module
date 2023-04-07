@@ -1,0 +1,27 @@
+{
+    "name": "luanardev/performance-contract-module",
+    "type": "laravel-module",
+    "description": "Performance Contract Module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brian Simpokolwe",
+            "email": "bsimpokolwe@luanar.ac.mw"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+				"Lumis\\PerformanceContract\\Providers\\PerformanceContractServiceProvider"
+			],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Lumis\\PerformanceContract\\": ""
+        }
+    }
+}
