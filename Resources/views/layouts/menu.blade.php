@@ -31,7 +31,7 @@
     <a href="#" class="nav-link">
         <p>
             <i class="nav-icon fas fa-gavel"></i>
-            Appraisals
+            Appraisal
         </p>
     </a>
 </li>
