@@ -14,7 +14,7 @@
                                         <td>#</td>
                                         <th>Session</th>
                                         <th>Appraiser</th>
-                                        <th>Created</th>
+                                        <th>Submitted</th>
                                         <th>Status</th>
                                         <th></th>
                                     </tr>
@@ -27,7 +27,7 @@
                                             {{strtoupper($plan->financialYear->name)}}
                                         </td>
                                         <td>{{$plan->appraiser->fullname()}}</td>
-                                        <td>{{$plan->createdPeriod()}}</td>
+                                        <td>{{$plan->submittedPeriod()}}</td>
                                         <td>{!! $plan->statusBadge() !!}</td>
                                         <td>
                                             <a href="{{route('performance_contract.show', $plan)}}"
