@@ -30,9 +30,6 @@
                         :staff="$staff"
                         :financialYear="$financialYear"
                     />
-                    <livewire:performancecontract::previous-plans
-                        :staff="$staff"
-                    />
                 </div>
             </div>
         </div>
