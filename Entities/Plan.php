@@ -200,6 +200,20 @@ class Plan extends Model
     }
 
     /**
+     * end date
+     *
+     * @return string|null
+     */
+    public function createdPeriod(): ?string
+    {
+        if (isset($this->created_at)) {
+            return $this->created_at->diffForHumans();
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Status
      *
      * @return string|null
@@ -207,9 +221,9 @@ class Plan extends Model
     public function statusBadge(): null|string
     {
         if ($this->isDraft()) {
-            return "<span class='badge badge-danger py-1 text-white'>Draft</span>";
+            return "<span class='badge badge-danger py-1 text-white'>{$this->plan_status}</span>";
         } elseif ($this->isCompleted()) {
-            return "<span class='badge badge-success py-1 text-white'>Submitted</span>";
+            return "<span class='badge badge-success py-1 text-white'>{$this->plan_status}</span>";
         } else {
             return null;
         }
