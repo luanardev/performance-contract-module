@@ -8,10 +8,12 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
+use Lumis\Organization\Exceptions\FinancialYearNotFoundException;
 use Lumis\StaffManagement\Entities\StaffProfile;
 use Lumis\Organization\Entities\FinancialYear;
 use Lumis\PerformanceContract\Entities\Pillar;
 use Lumis\PerformanceContract\Entities\Plan;
+use Lumis\StaffManagement\Exceptions\StaffNotFoundException;
 
 class PlanController extends Controller
 {
@@ -22,10 +24,20 @@ class PlanController extends Controller
     public function index(): Renderable
     {
         $staff = StaffProfile::get();
-        if(empty($staff)){
+        $financialYear = FinancialYear::getCurrent();
 
+        if(empty($staff)){
+            throw new StaffNotFoundException();
         }
-        return view('performancecontract::index');
+
+        if(empty($financialYear)){
+            throw new FinancialYearNotFoundException();
+        }
+
+        return view('performancecontract::index')->with([
+            'staff' => $staff,
+            'financialYear' => $financialYear
+        ]);
     }
 
     /**
