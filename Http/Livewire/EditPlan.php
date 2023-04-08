@@ -23,7 +23,7 @@ class EditPlan extends LivewireUI
         if($this->plan->totalWeight() < 100){
             $this->toastrError('Performance contract incomplete');
         }else{
-            $this->plan->setCompleted()->update();
+            $this->plan->completed()->submittedAt()->update();
             $this->toastr('Performance contract submitted');
             return $this->redirectRoute('performance_contract.show', $this->plan);
         }
