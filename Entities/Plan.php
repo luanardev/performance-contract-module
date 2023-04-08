@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Lumis\StaffManagement\Entities\Staff;
 use Lumis\Organization\Entities\FinancialYear;
 
@@ -16,6 +17,7 @@ use Lumis\Organization\Entities\FinancialYear;
  * @property string $staff_id
  * @property string $financial_year
  * @property string $plan_status
+ * @property mixed $submitted_at
  * @property Collection $deliverables
  * @property Staff $staff
  * @property Staff $appraiser
@@ -40,10 +42,19 @@ class Plan extends Model
     protected $primaryKey = 'id';
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'submitted_at' => 'date:Y-m-d H:i:s',
+    ];
+
+    /**
      * @var array
      */
     protected $fillable = [
-        'staff_id', 'appraiser_id','financial_year', 'plan_status'
+        'staff_id', 'appraiser_id','financial_year', 'plan_status', 'submitted_at'
     ];
 
     /**
@@ -114,9 +125,18 @@ class Plan extends Model
     /**
      * @return static
      */
-    public function setCompleted(): static
+    public function completed(): static
     {
         $this->setAttribute('plan_status', 'Completed');
+        return $this;
+    }
+
+    /**
+     * @return static
+     */
+    public function submittedAt(): static
+    {
+        $this->setAttribute('submitted_at', now());
         return $this;
     }
 
@@ -208,6 +228,34 @@ class Plan extends Model
     {
         if (isset($this->created_at)) {
             return $this->created_at->diffForHumans();
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * end date
+     *
+     * @return string|null
+     */
+    public function updatedPeriod(): ?string
+    {
+        if (isset($this->updated_at)) {
+            return $this->updated_at->diffForHumans();
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * end date
+     *
+     * @return string|null
+     */
+    public function submittedPeriod(): ?string
+    {
+        if (isset($this->submitted_at)) {
+            return $this->submitted_at->diffForHumans();
         } else {
             return null;
         }
