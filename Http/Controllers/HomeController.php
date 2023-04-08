@@ -3,8 +3,11 @@
 namespace Lumis\PerformanceContract\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Lumis\Organization\Entities\FinancialYear;
+use Lumis\Organization\Exceptions\FinancialYearNotFoundException;
+use Lumis\StaffManagement\Entities\StaffProfile;
+use Lumis\StaffManagement\Exceptions\StaffNotFoundException;
 
 class HomeController extends Controller
 {
@@ -14,7 +17,21 @@ class HomeController extends Controller
      */
     public function index(): Renderable
     {
-        return view('performancecontract::home');
+        $staff = StaffProfile::get();
+        $financialYear = FinancialYear::getCurrent();
+
+        if(empty($staff)){
+            throw new StaffNotFoundException();
+        }
+
+        if(empty($financialYear)){
+            throw new FinancialYearNotFoundException();
+        }
+
+        return view('performancecontract::home')->with([
+            'staff' => $staff,
+            'financialYear' => $financialYear
+        ]);
     }
 
 
