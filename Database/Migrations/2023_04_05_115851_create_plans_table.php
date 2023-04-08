@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('staff_id');
             $table->uuid('appraiser_id')->nullable();
             $table->uuid('financial_year');
-            $table->enum('plan_status', ['Draft', 'Completed'])->default('Draft');
+            $table->enum('plan_status', ['Draft', 'Completed', 'Archived'])->default('Draft');
             $table->timestamps();
         });
     }
