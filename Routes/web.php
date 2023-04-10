@@ -18,5 +18,11 @@ Route::prefix('performance_contract')->group(function() {
     Route::get('/plan/create', 'PlanController@create')->name('performance_contract.create');
     Route::get('/plan/{plan}/edit', 'PlanController@edit')->name('performance_contract.edit');
     Route::get('/plan/{plan}/show', 'PlanController@show')->name('performance_contract.show');
+    Route::get('/plan/{plan}/copy', 'PlanController@copy')->name('performance_contract.copy');
+    Route::get('/plan/{plan}/download', 'PlanController@download')->name('performance_contract.download');
+    Route::get('/plan/{plan}/rating/midyear', 'RatingController@midyear')->name('performance_contract.rating.midyear');
+    Route::get('/plan/{plan}/rating/endyear', 'RatingController@endyear')->name('performance_contract.rating.endyear');
+    Route::get('/plan/{plan}/rating/performance', 'RatingController@performance')->name('performance_contract.rating.performance');
+    Route::get('/plan/{plan}/rating/download', 'RatingController@download')->name('performance_contract.rating.download');
 
 });
