@@ -24,14 +24,27 @@ class OverallPerformance extends EndYearPerformance
      */
     public function getNotRated(): int
     {
-        $ratings = $this->getRatings();
-        return $ratings->where('status', Rating::STATUS_UNRATED)->count();
+        $indicators = collect();
+        $deliverables = $this->plan->deliverables;
+        foreach($deliverables as $deliverable){
+            if($deliverable instanceof Deliverable){
+                foreach($deliverable->indicators as $indicator){
+                    if($indicator instanceof Indicator){
+                        if(!$indicator->hasRatings()){
+                            $indicators->add($indicator);
+                        }
+                    }
+                }
+
+            }
+        }
+        return $indicators->count();
     }
 
     /**
      * @return string|null
      */
-    public function getOverallRating(): ?string
+    public function getStatus(): ?string
     {
         $finalScore = $this->getFinalRate();
         $rating = null;
