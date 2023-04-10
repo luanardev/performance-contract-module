@@ -2,12 +2,12 @@
 
 namespace Lumis\PerformanceContract\Http\Controllers;
 
-use Illuminate\Contracts\Foundation\Application;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Str;
 use Lumis\Organization\Exceptions\FinancialYearNotFoundException;
 use Lumis\StaffManagement\Entities\StaffProfile;
 use Lumis\Organization\Entities\FinancialYear;
@@ -34,7 +34,7 @@ class PlanController extends Controller
             throw new FinancialYearNotFoundException();
         }
 
-        return view('performancecontract::index')->with([
+        return view('performancecontract::planning.index')->with([
             'staff' => $staff,
             'financialYear' => $financialYear
         ]);
@@ -46,7 +46,7 @@ class PlanController extends Controller
      */
     public function create(): Renderable
     {
-        return view('performancecontract::create');
+        return view('performancecontract::planning.create');
     }
 
 
@@ -57,7 +57,7 @@ class PlanController extends Controller
      */
     public function show(Plan $plan): Renderable
     {
-        return view('performancecontract::show')->with([
+        return view('performancecontract::planning.show')->with([
             'plan' => $plan
         ]);
     }
@@ -72,11 +72,51 @@ class PlanController extends Controller
         if($plan->isCompleted()){
             return back()->with('error', 'Cannot edit once submitted');
         }else{
-            return view('performancecontract::edit')->with([
+            return view('performancecontract::planning.edit')->with([
                 'plan' => $plan
             ]);
         }
 
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param Plan $plan
+     * @return Response|RedirectResponse
+     */
+    public function download(Plan $plan): Response|RedirectResponse
+    {
+        if($plan->isDraft()){
+            return back()->with('error', 'Cannot download incomplete plan');
+        }else{
+            $pillars = Pillar::all();
+
+            $pdf = Pdf::loadView('performancecontract::planning.download', [
+                'plan' => $plan,
+                'pillars' => $pillars
+            ]);
+
+            $pdf->setPaper('A4', 'landscape');
+
+            $staffName = $plan->staff->name();
+            $postPix = "performance plan";
+
+            $fileName = Str::kebab("{$staffName} {$postPix}");
+            return $pdf->stream($fileName.'.pdf');
+        }
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param Plan $plan
+     * @return Renderable
+     */
+    public function copy(Plan $plan): Renderable
+    {
+        return view('performancecontract::planning.copy')->with([
+            'plan' => $plan
+        ]);
     }
 
 
