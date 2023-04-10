@@ -18,7 +18,11 @@ class MidYearPerformance extends Performance
         $deliverables = $this->plan->deliverables;
         foreach($deliverables as $deliverable){
             if($deliverable instanceof Deliverable){
-                $ratings->add($deliverable->midYearRatings());
+                foreach($deliverable->midYearRatings() as $rating){
+                    if($rating instanceof Rating){
+                        $ratings->add($rating);
+                    }
+                }
             }
         }
         return $ratings;
