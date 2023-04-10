@@ -17,13 +17,11 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('indicator_id');
             $table->enum('rating_type', ['MidYear', 'EndYear']);
-            $table->float('self_rate');
-            $table->string('self_comment');
-            $table->string('outcome');
-            $table->float('appraiser_rate');
-            $table->string('appraiser_comment');
-            $table->float('agreed_rate');
-            $table->enum('status', ['Rated', 'NotRated']);
+            $table->float('self_rate')->nullable();
+            $table->string('outcome')->nullable();
+            $table->float('appraiser_rate')->nullable();
+            $table->string('appraiser_comment')->nullable();
+            $table->float('agreed_rate')->nullable();
             $table->foreign('indicator_id')->references('id')->on('app_performance_contract_indicators')->cascadeOnDelete();
             $table->timestamps();
         });
