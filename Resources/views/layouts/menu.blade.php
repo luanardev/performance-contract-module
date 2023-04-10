@@ -11,7 +11,7 @@
     <a href="{{route('performance_contract.create')}}" class="nav-link">
         <p>
             <i class="nav-icon fas fa-plus-circle"></i>
-            Create
+            Planning
         </p>
 
     </a>
