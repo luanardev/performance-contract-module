@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('deliverable_id');
             $table->string('name')->nullable();
+            $table->string('target')->nullable();
             $table->float('weight')->nullable();
             $table->foreign('deliverable_id')->references('id')->on('app_performance_contract_deliverables')->cascadeOnDelete();
             $table->timestamps();
