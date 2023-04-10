@@ -15,6 +15,7 @@ use Lumis\Organization\Entities\FinancialYear;
 /**
  * @property string $id
  * @property string $staff_id
+ * @property string $appraiser_id
  * @property string $financial_year
  * @property string $plan_status
  * @property mixed $submitted_at
