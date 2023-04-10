@@ -12,12 +12,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $indicator_id
  * @property string $rating_type
  * @property float $self_rate
- * @property string $self_comment
  * @property string $outcome
  * @property float $appraiser_rate
  * @property string $appraiser_comment
  * @property float $agreed_rate
- * @property string $status
  * @property Indicator $indicator
  */
 class Rating extends Model
@@ -26,8 +24,6 @@ class Rating extends Model
 
     const RATING_MIDYEAR = 'MidYear';
     const RATING_ENDYEAR = 'EndYear';
-    const STATUS_RATED = 'Rated';
-    const STATUS_UNRATED = 'NotRated';
 
     /**
      * The table associated with the model.
@@ -47,8 +43,8 @@ class Rating extends Model
      * @var array
      */
     protected $fillable = [
-        'indicator_id',  'rating_type', 'self_rate', 'self_comment', 'outcome',
-        'appraiser_rate', 'appraiser_comment', 'agreed_rate', 'status'
+        'indicator_id',  'rating_type', 'self_rate', 'outcome',
+        'appraiser_rate', 'appraiser_comment', 'agreed_rate'
     ];
 
     /**
