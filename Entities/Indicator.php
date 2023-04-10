@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $id
  * @property string $deliverable_id
  * @property string $name
+ * @property string $target
  * @property float $weight
  * @property Deliverable $deliverable
  * @property Collection $ratings
@@ -39,7 +40,7 @@ class Indicator extends Model
      * @var array
      */
     protected $fillable = [
-        'deliverable_id', 'name', 'weight'
+        'deliverable_id', 'name', 'target','weight'
     ];
 
     /**
@@ -56,6 +57,14 @@ class Indicator extends Model
     public function ratings(): HasMany
     {
         return $this->hasMany(Rating::class, 'indicator_id');
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRatings(): bool
+    {
+        return (bool)$this->ratings->count();
     }
 
     /**
