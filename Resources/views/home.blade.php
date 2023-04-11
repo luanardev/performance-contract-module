@@ -22,11 +22,12 @@
         <div class="content">
             <div class="row">
                 <div class="col-lg-12">
-                    <livewire:performancecontract::planning.draft-plans
+                    <livewire:performancecontract::planning.recent-plans
                         :staff="$staff"
                         :financialYear="$financialYear"
                     />
-                    <livewire:performancecontract::planning.recent-plans
+
+                    <livewire:performancecontract::planning.draft-plans
                         :staff="$staff"
                         :financialYear="$financialYear"
                     />
