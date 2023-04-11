@@ -30,7 +30,7 @@
                                         <td>{{$plan->createdPeriod()}}</td>
                                         <td>{!! $plan->statusBadge() !!}</td>
                                         <td>
-                                            <a href="{{route('performance_contract.edit', $plan)}}"
+                                            <a href="{{route('performance_contract.plan.edit', $plan)}}"
                                                class="btn btn-sm btn-outline-primary">Edit</a>
                                             <a wire:click.prevent="delete('{{$plan->id}}')" href="#"
                                                class="btn btn-sm btn-outline-danger">Delete</a>
