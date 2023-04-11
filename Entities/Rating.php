@@ -54,4 +54,22 @@ class Rating extends Model
     {
         return $this->belongsTo(Indicator::class, 'indicator_id');
     }
+
+    /**
+     * @return static
+     */
+    public function midYearRating(): static
+    {
+        $this->setAttribute('rating_type', static::RATING_MIDYEAR);
+        return $this;
+    }
+
+    /**
+     * @return static
+     */
+    public function endYearRating(): static
+    {
+        $this->setAttribute('rating_type', static::RATING_ENDYEAR);
+        return $this;
+    }
 }
