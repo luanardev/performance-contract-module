@@ -10,7 +10,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('performance_contract.show', $plan)}}" class="nav-link">
+                        <a href="{{route('performance_contract.plan.show', $plan)}}" class="nav-link">
                             <i class="fa fa-eye"></i> View
                         </a>
                     </li>
@@ -42,18 +42,18 @@
             <tbody>
             <tr>
                 <th>Self Rating</th>
-                <td>{{$this->midYear()->getTotalSelfRate()}}</td>
-                <td>{{$this->endYear()->getTotalSelfRate()}}</td>
+                <td>{{$this->midYear()->getSelfRate()}}</td>
+                <td>{{$this->endYear()->getSelfRate()}}</td>
             </tr>
             <tr>
                 <th>Supervisor Rating</th>
-                <td>{{$this->midYear()->getTotalAppraiserRate()}}</td>
-                <td>{{$this->endYear()->getTotalAppraiserRate()}}</td>
+                <td>{{$this->midYear()->getAppraiserRate()}}</td>
+                <td>{{$this->endYear()->getAppraiserRate()}}</td>
             </tr>
             <tr>
                 <th>Agreed Rating</th>
-                <td>{{$this->midYear()->getTotalAgreedRate()}}</td>
-                <td>{{$this->endYear()->getTotalAgreedRate()}}</td>
+                <td>{{$this->midYear()->getAgreedRate()}}</td>
+                <td>{{$this->endYear()->getAgreedRate()}}</td>
             </tr>
             </tbody>
         </table>
@@ -67,7 +67,7 @@
             <tbody>
                 <tr>
                     <th>Agreed Rate</th>
-                    <td>{{$this->overall()->getTotalAgreedRate()}}</td>
+                    <td>{{$this->overall()->getAgreedRate()}}</td>
                 </tr>
                 <tr>
                     <th>Overall Rate</th>
