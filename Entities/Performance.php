@@ -40,17 +40,17 @@ abstract class Performance
     /**
      * @return int|mixed
      */
-    public abstract function getTotalSelfRate(): mixed;
+    public abstract function getSelfRate(): mixed;
 
     /**
      * @return int|mixed
      */
-    public abstract function getTotalAppraiserRate(): mixed;
+    public abstract function getAppraiserRate(): mixed;
 
     /**
      * @return int|mixed
      */
-    public abstract function getTotalAgreedRate(): mixed;
+    public abstract function getAgreedRate(): mixed;
 
     /**
      * @return Collection
