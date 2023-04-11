@@ -3,9 +3,9 @@
 namespace Lumis\PerformanceContract\Http\Livewire\Rating;
 
 use Luanardev\LivewireUI\LivewireUI;
-use Lumis\PerformanceContract\Entities\EndYearPerformance;
-use Lumis\PerformanceContract\Entities\MidYearPerformance;
-use Lumis\PerformanceContract\Entities\OverallPerformance;
+use Lumis\PerformanceContract\Entities\EndYear;
+use Lumis\PerformanceContract\Entities\MidYear;
+use Lumis\PerformanceContract\Entities\Overall;
 use Lumis\PerformanceContract\Entities\Plan;
 
 class Performance extends LivewireUI
@@ -17,17 +17,17 @@ class Performance extends LivewireUI
         $this->plan = $plan;
     }
 
-    public function midYear(): MidYearPerformance
+    public function midYear(): MidYear
     {
         return $this->plan->midYearPerformance();
     }
 
-    public function endYear(): EndYearPerformance
+    public function endYear(): EndYear
     {
         return $this->plan->endYearPerformance();
     }
 
-    public function overall(): OverallPerformance
+    public function overall(): Overall
     {
         return $this->plan->overallPerformance();
     }
