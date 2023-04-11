@@ -7,5 +7,7 @@
     "providers": [
         "Lumis\\PerformanceContract\\Providers\\PerformanceContractServiceProvider"
     ],
-    "files": []
+    "files": [
+        "Helpers/functions.php"
+    ]
 }
