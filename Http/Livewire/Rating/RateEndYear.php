@@ -66,6 +66,7 @@ class RateEndYear extends LivewireUI
 
             if(empty($rating)){
                 $rating = new Rating();
+                $rating->endYearRating();
                 $rating->indicator()->associate($indicatorKey);
             }
             if($property == 'self_rate'){
