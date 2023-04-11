@@ -61,7 +61,6 @@ class RatingController extends Controller
      */
     public function performance(Plan $plan): Renderable|RedirectResponse
     {
-
         return view('performancecontract::rating.performance')->with([
             'plan' => $plan
         ]);
