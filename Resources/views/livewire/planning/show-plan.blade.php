@@ -10,7 +10,7 @@
                     </li>
                     @if($plan->isDraft())
                     <li class="nav-item">
-                        <a href="{{route('performance_contract.edit', $plan)}}" class="nav-link">
+                        <a href="{{route('performance_contract.plan.edit', $plan)}}" class="nav-link">
                             <i class="nav-icon fas fa-edit"></i> Edit
                         </a>
                     </li>
@@ -35,19 +35,19 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{route('performance_contract.copy', $plan)}}" class="nav-link">
+                        <a href="{{route('performance_contract.plan.copy', $plan)}}" class="nav-link">
                             <i class="nav-icon fas fa-copy"></i> Copy
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('performance_contract.plan.share', $plan)}}" class="nav-link">
                             <i class="nav-icon fas fa-share"></i> Share
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{route('performance_contract.download', $plan)}}" target="_blank" class="nav-link">
+                        <a href="{{route('performance_contract.plan.download', $plan)}}" target="_blank" class="nav-link">
                             <i class="nav-icon fas fa-download"></i> Download
                         </a>
                     </li>
