@@ -25,7 +25,7 @@ class EditPlan extends LivewireUI
         }else{
             $this->plan->completed()->submittedAt()->update();
             $this->toastr('Performance contract submitted');
-            $this->redirectRoute('performance_contract.show', $this->plan);
+            $this->redirectRoute('performance_contract.plan.show', $this->plan);
         }
     }
 
