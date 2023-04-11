@@ -82,6 +82,23 @@ class PlanController extends Controller
     /**
      * Show the form for editing the specified resource.
      * @param Plan $plan
+     * @return Renderable|RedirectResponse
+     */
+    public function share(Plan $plan): Renderable|RedirectResponse
+    {
+        if($plan->isDraft()){
+            return back()->with('error', 'Cannot share incomplete plan');
+        }else{
+            return view('performancecontract::planning.share')->with([
+                'plan' => $plan
+            ]);
+        }
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param Plan $plan
      * @return Response|RedirectResponse
      */
     public function download(Plan $plan): Response|RedirectResponse
@@ -115,6 +132,18 @@ class PlanController extends Controller
     public function copy(Plan $plan): Renderable
     {
         return view('performancecontract::planning.copy')->with([
+            'plan' => $plan
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param Plan $plan
+     * @return Renderable
+     */
+    public function reuse(Plan $plan): Renderable
+    {
+        return view('performancecontract::planning.reuse')->with([
             'plan' => $plan
         ]);
     }
