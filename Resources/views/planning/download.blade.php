@@ -160,7 +160,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
-                            <tr>
+                            <tr class="bg-dark">
                                 <th colspan="4">
                                     {{$pillar->name}} ({{$plan->getPillarWeight($pillar)}} %)
                                 </th>
