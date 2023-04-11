@@ -66,6 +66,7 @@ class RateMidYear extends LivewireUI
 
             if(empty($rating)){
                $rating = new Rating();
+               $rating->midYearRating();
                $rating->indicator()->associate($indicatorKey);
             }
             if($property === 'self_rate'){
