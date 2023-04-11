@@ -169,18 +169,18 @@
                     <tbody>
                         <tr>
                             <th>Self Rating</th>
-                            <td>{{$plan->midYearPerformance()->getTotalSelfRate()}}</td>
-                            <td>{{$plan->endYearPerformance()->getTotalSelfRate()}}</td>
+                            <td>{{$plan->midYearPerformance()->getSelfRate()}}</td>
+                            <td>{{$plan->endYearPerformance()->getSelfRate()}}</td>
                         </tr>
                         <tr>
-                            <th>Supervisor Rating</th>
-                            <td>{{$plan->midYearPerformance()->getTotalAppraiserRate()}}</td>
-                            <td>{{$plan->endYearPerformance()->getTotalAppraiserRate()}}</td>
+                            <th>Manager Rating</th>
+                            <td>{{$plan->midYearPerformance()->getAppraiserRate()}}</td>
+                            <td>{{$plan->endYearPerformance()->getAppraiserRate()}}</td>
                         </tr>
                         <tr>
                             <th>Agreed Rating</th>
-                            <td>{{$plan->midYearPerformance()->getTotalAgreedRate()}}</td>
-                            <td>{{$plan->endYearPerformance()->getTotalAgreedRate()}}</td>
+                            <td>{{$plan->midYearPerformance()->getAgreedRate()}}</td>
+                            <td>{{$plan->endYearPerformance()->getAgreedRate()}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -194,7 +194,7 @@
                     <tbody>
                         <tr>
                             <th>Agreed Rate</th>
-                            <td>{{$plan->overallPerformance()->getTotalAgreedRate()}}</td>
+                            <td>{{$plan->overallPerformance()->getAgreedRate()}}</td>
                         </tr>
                         <tr>
                             <th>Overall Rate</th>
@@ -236,11 +236,11 @@
                                 <th scope="col">Targets</th>
                                 <th scope="col">Weight</th>
                                 <th scope="col">Self</th>
-                                <th scope="col">Supervisor</th>
+                                <th scope="col">Manager</th>
                                 <th scope="col">Agreed</th>
                                 <th scope="col">Outcome</th>
                                 <th scope="col">Self</th>
-                                <th scope="col">Supervisor</th>
+                                <th scope="col">Manager</th>
                                 <th scope="col">Agreed</th>
                                 <th scope="col">Outcome</th>
                             </tr>
