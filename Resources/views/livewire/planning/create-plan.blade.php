@@ -1,7 +1,7 @@
 <div class="col-lg-12 col-md-6 col-sm-12">
     <div class="card card-outline">
         <div class="card-header">
-            <h3 class="card-title text-bold">Please Select Financial Year and Appraiser</h3>
+            <h3 class="card-title text-bold">Please select financial year and appraiser</h3>
         </div>
         <div class="card-body">
 
@@ -14,7 +14,7 @@
                         <div class="col-sm-6">
                             <select  wire:model.lazy="financialYear" class="form-control">
                                 @foreach($financialYears as $financialYear)
-                                <option value="{{$financialYear->id}}">{{$financialYear->name}}</option>
+                                <option value="{{$financialYear->id}}">{{strtoupper($financialYear->name)}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -27,7 +27,7 @@
                         <div class="col-sm-6">
                             <select  wire:model.lazy="appraiser" class="form-control">
                                 @foreach($staffMembers as $staff)
-                                    <option value="{{$staff->id}}">{{$staff->fullname()}}</option>
+                                    <option value="{{$staff->id}}">{{strtoupper($staff->fullname())}}</option>
                                 @endforeach
                             </select>
                         </div>
