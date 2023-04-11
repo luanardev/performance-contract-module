@@ -71,7 +71,7 @@ class CopyPlan extends LivewireUI
             }
 
             $this->toastrSuccess('Performance contract copied');
-            $this->redirectRoute('performance_contract.edit', [$newPlan]);
+            $this->redirectRoute('performance_contract.plan.edit', [$newPlan]);
         }
 
     }
