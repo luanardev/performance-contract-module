@@ -2,6 +2,7 @@
 
 namespace Lumis\PerformanceContract\Entities;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -156,27 +157,35 @@ class Plan extends Model
     }
 
     /**
-     * @return MidYearPerformance
+     * @return MidYear
      */
-    public function midYearPerformance(): MidYearPerformance
+    public function midYearPerformance(): MidYear
     {
-        return new MidYearPerformance($this);
+        return new MidYear($this);
     }
 
     /**
-     * @return EndYearPerformance
+     * @return EndYear
      */
-    public function endYearPerformance(): EndYearPerformance
+    public function endYearPerformance(): EndYear
     {
-        return new EndYearPerformance($this);
+        return new EndYear($this);
     }
 
     /**
-     * @return OverallPerformance
+     * @return Overall
      */
-    public function overallPerformance(): OverallPerformance
+    public function overallPerformance(): Overall
     {
-        return new OverallPerformance($this);
+        return new Overall($this);
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->financialYear->name;
     }
 
     /**
@@ -262,6 +271,7 @@ class Plan extends Model
         }
     }
 
+
     /**
      * Status
      *
@@ -300,6 +310,15 @@ class Plan extends Model
             ->where('appraiser_id', $appraiser)
             ->where('financial_year', $financialYear)
             ->exists();
+    }
+
+    /**
+     * @param Staff $appraiser
+     * @return Builder
+     */
+    public static function appraisedBy(Staff $appraiser): Builder
+    {
+        return Plan::where('appraiser_id', $appraiser->id);
     }
 
 }
