@@ -30,7 +30,7 @@
                                         <td>{{$plan->submittedPeriod()}}</td>
                                         <td>{!! $plan->statusBadge() !!}</td>
                                         <td>
-                                            <a href="{{route('performance_contract.show', $plan)}}"
+                                            <a href="{{route('performance_contract.plan.show', $plan)}}"
                                                class="btn btn-sm btn-outline-primary">Open</a>
                                         </td>
                                     </tr>
