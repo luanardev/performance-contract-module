@@ -46,7 +46,7 @@ class CreatePlan extends LivewireUI
             $plan->setDraft();
             $plan->save();
             $this->toastrSuccess('Performance contract created');
-            $this->redirectRoute('performance_contract.edit', [$plan]);
+            $this->redirectRoute('performance_contract.plan.edit', [$plan]);
         }
 
     }
