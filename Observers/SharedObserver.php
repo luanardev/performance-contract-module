@@ -4,6 +4,7 @@ namespace Lumis\PerformanceContract\Observers;
 
 use Lumis\PerformanceContract\Entities\Outbox;
 use Lumis\PerformanceContract\Entities\Shared;
+use Lumis\PerformanceContract\Events\PlanShared;
 
 class SharedObserver
 {
@@ -20,6 +21,8 @@ class SharedObserver
         $outbox = new Outbox();
         $outbox->fill($shared->getAttributes());
         $outbox->save();
+
+        PlanShared::dispatch($shared);
     }
 
     /**
