@@ -20,8 +20,13 @@ class CreatePlan extends LivewireUI
         parent::__construct();
         $this->financialYear = null;
         $this->appraiser = null;
-        $this->financialYears = FinancialYear::all();
+        $this->financialYears = $this->financialYears();
         $this->staffMembers = Staff::all();
+    }
+
+    public function financialYears()
+    {
+        return FinancialYear::latest()->limit(5)->get();
     }
 
     public function save()
