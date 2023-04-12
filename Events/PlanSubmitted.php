@@ -2,11 +2,13 @@
 
 namespace Lumis\PerformanceContract\Events;
 
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Lumis\PerformanceContract\Entities\Plan;
 
 class PlanSubmitted
 {
-    use SerializesModels;
+    use Dispatchable, SerializesModels;
 
     public Plan $plan;
 
