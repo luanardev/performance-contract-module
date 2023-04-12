@@ -23,13 +23,18 @@ class CopyPlan extends LivewireUI
         $this->financialYear = null;
         $this->appraiser = null;
         $this->plan = null;
-        $this->financialYears = FinancialYear::all();
+        $this->financialYears = $this->financialYears();
         $this->staffMembers = Staff::all();
     }
 
     public function mount(Plan $plan)
     {
         $this->plan = $plan;
+    }
+
+    public function financialYears()
+    {
+        return FinancialYear::latest()->limit(5)->get();
     }
 
     public function save()
