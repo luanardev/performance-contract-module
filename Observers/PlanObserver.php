@@ -3,6 +3,8 @@
 namespace Lumis\PerformanceContract\Observers;
 
 use Lumis\PerformanceContract\Entities\Plan;
+use Lumis\PerformanceContract\Events\PlanCreated;
+use Lumis\PerformanceContract\Events\PlanSubmitted;
 
 class PlanObserver
 {
@@ -16,7 +18,7 @@ class PlanObserver
      */
     public function created(Plan $plan): void
     {
-
+        PlanCreated::dispatch($plan);
     }
 
     /**
@@ -27,7 +29,9 @@ class PlanObserver
      */
     public function updated(Plan $plan): void
     {
-
+        if($plan->isCompleted()){
+            PlanSubmitted::dispatch($plan);
+        }
 
     }
 
