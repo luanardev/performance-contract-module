@@ -2,11 +2,14 @@
 
 namespace Lumis\PerformanceContract\Listeners;
 
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Notification;
+use Lumis\PerformanceContract\Events\PlanCreated;
+use Lumis\PerformanceContract\Notifications\PerformanceContractCreated;
 
-class HandlePlanCreated
+class HandlePlanCreated implements ShouldQueue
 {
+
     /**
      * Create the event listener.
      *
@@ -20,11 +23,16 @@ class HandlePlanCreated
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  PlanCreated  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(PlanCreated $event): void
     {
-        //
+        $plan = $event->plan;
+        $staff = $event->plan->staff;
+
+        // notify the staff who created the plan
+        $notification = new PerformanceContractCreated($plan);
+        Notification::send($staff, $notification);
     }
 }
