@@ -9,33 +9,16 @@ use Lumis\PerformanceContract\Entities\Indicator;
 use Lumis\PerformanceContract\Entities\Plan;
 use Lumis\StaffManagement\Entities\Staff;
 
-class CopyPlan extends LivewireUI
+class CopyPlan extends CreatePlan
 {
-    public mixed $financialYear;
-    public mixed $appraiser;
-    public mixed $financialYears;
-    public mixed $staffMembers;
-    public mixed $plan;
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->financialYear = null;
-        $this->appraiser = null;
-        $this->plan = null;
-        $this->financialYears = $this->financialYears();
-        $this->staffMembers = Staff::all();
-    }
+    public mixed $plan;
 
     public function mount(Plan $plan)
     {
         $this->plan = $plan;
     }
 
-    public function financialYears()
-    {
-        return FinancialYear::latest()->limit(5)->get();
-    }
 
     public function save()
     {
@@ -43,8 +26,8 @@ class CopyPlan extends LivewireUI
 
         $submitted = Plan::submitted(
             $this->plan->staff,
-            $this->appraiser,
-            $this->financialYear
+            $this->selectedAppraiser,
+            $this->selectedYear
         );
 
         if($submitted){
@@ -53,8 +36,8 @@ class CopyPlan extends LivewireUI
         else{
             $newPlan = new Plan();
             $newPlan->staff()->associate($this->plan->staff);
-            $newPlan->financialYear()->associate($this->financialYear);
-            $newPlan->appraiser()->associate($this->appraiser);
+            $newPlan->financialYear()->associate($this->selectedYear);
+            $newPlan->appraiser()->associate($this->selectedAppraiser);
             $newPlan->save();
 
             foreach($this->plan->deliverables as $deliverable) {
@@ -76,21 +59,9 @@ class CopyPlan extends LivewireUI
             }
 
             $this->toastrSuccess('Performance contract copied');
-            $this->redirectRoute('performance_contract.plan.edit', [$newPlan]);
+            $this->redirectRoute('performance_contract.plan.edit', $newPlan);
         }
 
     }
 
-    public function rules()
-    {
-        return [
-            'financialYear' => 'required',
-            'appraiser' => 'required'
-        ];
-    }
-
-    public function render()
-    {
-        return view('performancecontract::livewire.planning.copy-plan');
-    }
 }
