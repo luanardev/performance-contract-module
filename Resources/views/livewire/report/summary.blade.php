@@ -52,7 +52,6 @@
                                     <th>Position</th>
                                     <th>Overall</th>
                                     <th>Status</th>
-                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
