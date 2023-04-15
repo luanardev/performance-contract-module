@@ -12,7 +12,7 @@
                             Financial Year
                         </label>
                         <div class="col-sm-6">
-                            <select  wire:model.lazy="financialYear" class="form-control">
+                            <select  wire:model.lazy="selectedYear" class="form-control">
                                 @foreach($financialYears as $financialYear)
                                 <option value="{{$financialYear->id}}">{{strtoupper($financialYear->name)}}</option>
                                 @endforeach
@@ -25,11 +25,28 @@
                             Who will Appraise You?
                         </label>
                         <div class="col-sm-6">
-                            <select  wire:model.lazy="appraiser" class="form-control">
-                                @foreach($staffMembers as $staff)
-                                    <option value="{{$staff->id}}">{{strtoupper($staff->fullname())}}</option>
-                                @endforeach
-                            </select>
+                            <div style="position:relative">
+                                <input wire:model.debounce.200ms="searchAppraiser" class="form-control" type="text" placeholder="Search..."/>
+                            </div>
+                            @if($showDropdown)
+                            <div class="">
+                                @if(strlen($searchAppraiser)>2)
+                                    @if(count($staffMembers)>0)
+                                        <ul class="list-group">
+                                            @foreach($staffMembers as $appraiser)
+                                                <li class="list-group-item list-group-item-action">
+                                                    <a href="#" wire:click="selectAppraiser('{{$appraiser->id}}')">
+                                                        {{$appraiser->fullname()}} ({{$appraiser->employment->getPosition()}})
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        <li class="list-group-item">Record not found...</li>
+                                    @endif
+                                @endif
+                            </div>
+                            @endif
                         </div>
                     </div>
 
