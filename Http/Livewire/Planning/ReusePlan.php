@@ -12,14 +12,15 @@ class ReusePlan extends CopyPlan
 
     public function save()
     {
+
         $this->validate();
 
         $staff = StaffProfile::get();
 
         $submitted = Plan::submitted(
             $staff,
-            $this->appraiser,
-            $this->financialYear
+            $this->selectedAppraiser,
+            $this->selectedYear
         );
 
         if($submitted){
@@ -28,8 +29,8 @@ class ReusePlan extends CopyPlan
         else{
             $newPlan = new Plan();
             $newPlan->staff()->associate($staff);
-            $newPlan->financialYear()->associate($this->financialYear);
-            $newPlan->appraiser()->associate($this->appraiser);
+            $newPlan->financialYear()->associate($this->selectedYear);
+            $newPlan->appraiser()->associate($this->selectedAppraiser);
             $newPlan->save();
 
             foreach($this->plan->deliverables as $deliverable) {
@@ -51,7 +52,7 @@ class ReusePlan extends CopyPlan
             }
 
             $this->toastrSuccess('Performance contract created');
-            $this->redirectRoute('performance_contract.plan.edit', [$newPlan]);
+            $this->redirectRoute('performance_contract.plan.edit', $newPlan);
         }
 
     }
